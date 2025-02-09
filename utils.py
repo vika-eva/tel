@@ -15,7 +15,4 @@ def config_logger() -> logging.Logger:
 
 COMMANDS = [
     BotCommand(command='start', description='Starts dialog with Bot'),
-    BotCommand(command='command_1', description='Action 1'),
-    BotCommand(command='command_2', description='Action 2'),
-    BotCommand(command='command_3', description='Action 3')
 ]
