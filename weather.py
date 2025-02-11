@@ -19,11 +19,11 @@ class WeatherGet:
 
     def as_text(self):
         return (f"""
-                Погода:
-                Статус: {self.status}
-                Температура: {self.temp} ℃
-                Вологість: {self.humidity} %
-                Вітер: {self.wind} Km/h
+                🌈⚡️🌤️☁️ Погода:
+            🌪️ Статус: {self.status}
+            🌡 Температура: {self.temp} ℃
+            💧 Вологість: {self.humidity} %
+            💨 Вітер: {self.wind} Km/h
                 """)
 
 class Weather:
