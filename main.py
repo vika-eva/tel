@@ -8,9 +8,9 @@ from aiohttp import ClientResponseError
 from reply import get_weather_by_city
 from utils import config_logger, COMMANDS
 from weather import Weather
-from currency import *
-from news import *
-from pict_nasa import *
+from currency import format_exchange
+from news import get_random_joke
+from pict_nasa import get_nasa_photo
 from database import db
 
 TOKEN = os.getenv('TOKEN')
