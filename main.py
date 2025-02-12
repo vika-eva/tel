@@ -1,4 +1,5 @@
 import asyncio
+import os
 from aiogram import Bot, Dispatcher, F, types
 from aiogram.filters import CommandStart
 from aiogram.fsm.context import FSMContext
@@ -8,9 +9,9 @@ from aiohttp import ClientResponseError
 from reply import get_weather_by_city
 from utils import config_logger, COMMANDS
 from weather import Weather
-from currency import *
-from news import *
-from pict_nasa import *
+from currency import format_exchange
+from news import get_random_joke
+from pict_nasa import get_nasa_photo
 from database import db
 
 TOKEN = os.getenv('TOKEN')
@@ -76,12 +77,14 @@ async def send_joke(message: Message):
     await message.answer(f"😂 Ось твій анекдот:\n\n{joke}")
 
 @dp.message(F.text == "фото дня")
-async def send_nasa_photo(message: types.Message):
-    title, image_url = get_nasa_photo()
-    if image_url:
-        await bot.send_photo(message.chat.id, image_url, caption=f"🌌 {title}")
+async def send_nasa_photo(message: Message):
+    content_type, title, url = get_nasa_photo()
+    if content_type == "image":
+        await bot.send_photo(message.chat.id, url, caption=f"🌌 {title}")
+    elif content_type == "video":
+        await message.answer(f"🎥 {title}\n {url}")
     else:
-        await message.answer(f"❌ шось не так пішло")
+        await message.answer(title)
 
 async def main():
     await db.connect()

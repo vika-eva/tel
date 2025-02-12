@@ -21,9 +21,9 @@ def format_exchange():
 
     text = "💱 поточний курс валют:"
     for item in data:
-        text += (f"\n🔹 {item['ccy']}/{item['base_ccy']}\n"
-                 f"   📉 Покупка: {item['buy']}\n"
-                 f"   📈 Продажа: {item['sale']}\n")
-
+        text += (f"""
+        💎 {item.get('ccy', 'not info')}/{item.get('base_ccy', 'not info')}
+                  📉 Покупка: {item.get('buy', 'not info')}
+                  📈 Продажа: {item.get('sale', 'not info')}
+                  """)
     return text
-
